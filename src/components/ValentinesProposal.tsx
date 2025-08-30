@@ -123,7 +123,7 @@ export default function ValentinesProposal() {
                     src={src}
                     alt={`Memory ${index + 1}`}
                     fill
-                    className="object-cover"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
               ))}
