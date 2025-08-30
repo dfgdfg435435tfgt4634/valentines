@@ -54,14 +54,14 @@ type ValentinesProposalProps = {
 export default function PhotoPairGame({
   handleShowProposal,
 }: ValentinesProposalProps) {
-  const [images, setImages] = useState<string[]>([]);
+  const [gameImages, setGameImages] = useState<string[]>([]);
   const [selected, setSelected] = useState<number[]>([]);
   const [matched, setMatched] = useState<number[]>([]);
   const [incorrect, setIncorrect] = useState<number[]>([]);
 
   useEffect(() => {
     // Shuffle the images when the component mounts
-    setImages(shuffleArray([...imagePairs]));
+    setGameImages(shuffleArray([...imagePairs]));
   }, []);
 
   const handleClick = async (index: number) => {
@@ -71,7 +71,7 @@ export default function PhotoPairGame({
 
     if (selected.length === 1) {
       const firstIndex = selected[0];
-      if (images[firstIndex] === images[index]) {
+      if (gameImages[firstIndex] === gameImages[index]) {
         setMatched((prev) => [...prev, firstIndex, index]);
       } else {
         await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
@@ -94,13 +94,13 @@ export default function PhotoPairGame({
     <div className="grid grid-cols-9 gap-2">
       {/* Image preload */}
       <div className="hidden">
-        {images.map((image, i) => (
+        {gameImages.map((image, i) => (
           <Image
             key={i}
             src={image}
             alt={`Image ${i + 1}`}
-            layout="fill"
-            objectFit="cover"
+            width={80}
+            height={80}
             priority
           />
         ))}
@@ -141,11 +141,11 @@ export default function PhotoPairGame({
                 style={{ backfaceVisibility: "hidden" }}
               >
                 <Image
-                  src={images[index]}
+                  src={gameImages[index]}
                   alt={`Memory ${index + 1}`}
-                  fill
-                  className="rounded-md"
-                  style={{ objectFit: 'cover' }}
+                  width={80}
+                  height={80}
+                  className="rounded-md w-full h-full object-cover"
                 />
               </motion.div>
             )}
