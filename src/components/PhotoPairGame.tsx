@@ -142,7 +142,7 @@ export default function PhotoPairGame({
               >
                 <Image
                   src={images[index]}
-                  alt={`Imagen ${index + 1}`}
+                  alt={`Image ${index + 1}`}
                   layout="fill"
                   objectFit="cover"
                   className="rounded-md"
